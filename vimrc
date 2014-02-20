@@ -58,5 +58,12 @@ autocmd FileType asm :silent !echo -e "\033]Phd6d2a1\033\\"
 autocmd FileType python colorscheme molokai
 autocmd FileType python :silent !echo -e "\033]Ph000000\033\\"
 
+autocmd FileType markdown colorscheme markdowntheme
+autocmd FileType markdown :silent !echo -e "\033]PhFFFFFF\033\\"
+
 "set terminal background to original color on exit
-autocmd VimLeave :silent !echo -e "\033]Phfdf6e3\033\\"
+autocmd VimLeave * :silent !echo -e "\033]Phfdf6e3\033\\"
+
+" Set folds to be saved
+autocmd BufWinLeave ?* mkview
+autocmd BufWinEnter ?* silent loadview
