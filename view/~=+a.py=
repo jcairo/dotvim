@@ -2,8 +2,8 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-inoremap <buffer> <silent> <Nul> =pymode#rope#complete(0)
 inoremap <buffer> <silent> <C-Space> =pymode#rope#complete(0)
+inoremap <buffer> <silent> <Nul> =pymode#rope#complete(0)
 noremap <buffer> <silent> ra :PymodeRopeAutoImport
 noremap <buffer> <silent> r1p :call pymode#rope#module_to_package()
 noremap <buffer> <silent> rnc :call pymode#rope#generate_class()
@@ -157,12 +157,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 12) / 24)
+let s:l = 2 - ((1 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+2
+normal! 021|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
