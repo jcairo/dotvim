@@ -4,7 +4,7 @@
 
 - git clone git://github.com/ammonialime/dotvim.git ~/.vim
 
-- Symlink .vimrc an .gvimrc to these moved file locations
+- Symlink .vimrc an .gvimrc to their locations in the .vim folder
 
 - ln -s ~/.vim/vimrc ~/.vimrc
 
