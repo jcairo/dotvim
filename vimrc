@@ -1,4 +1,5 @@
 "Enable pathogen plugin
+filetype off
 execute pathogen#infect()
 execute pathogen#helptags()
 
@@ -10,15 +11,15 @@ set incsearch "search as chars are entered
 " turn off highlighted search text
 nnoremap <leader><space> :nohlsearch<CR>
 
-"set folding options
-"set foldmethod=indent
-"set foldlevel=99
+" set folding options
+set foldmethod=syntax
+set foldmethod=indent
+set foldnestmax=2
+set foldlevel=99
+filetype plugin indent on
 
-"syntax on " syntax highlighting
+syntax on
 syntax enable
-" Indenting/folding
-"filetype on
-"filetype plugin indent on
 
 "Pymode settings
 "let g:pymode_options = 0
@@ -38,9 +39,6 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 set number 
 set ai
 
-"Enable syntax highlighting
-"syntax enable
-
 "Show white space chars type backslash l to invoke
 "Colors of the space chars are in the NonText and SpecialKey elements in 
 ".vimrc
@@ -58,7 +56,6 @@ endif
 "Set the color scheme
 let g:solarized_termcolors=256
 colorscheme molokai "default
-"colorscheme hemisu "default
 set background="dark"
 "
 "autocmd! BufEnter,BufNewFile *.markdown colo solarized "theme in markdown
@@ -93,7 +90,6 @@ autocmd BufWinEnter ?* silent loadview
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-set rtp+=/Users/Jon/.vim/bundle/powerline-develop/powerline/bindings/vim
 
 let g:Powerline_symbols = 'fancy'
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
