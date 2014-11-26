@@ -14,7 +14,7 @@ vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nctio
 nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 setlocal keymap=
 setlocal noarabic
-setlocal autoindent
+setlocal noautoindent
 setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
@@ -59,8 +59,8 @@ setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=
@@ -70,6 +70,7 @@ setlocal iskeyword=@,48-57,_,192-255,#
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+setlocal lispwords=
 setlocal list
 setlocal nomacmeta
 setlocal makeprg=
@@ -92,12 +93,12 @@ setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
 setlocal nosmartindent
-setlocal softtabstop=4
+setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!py3eval('powerline.statusline(1)')
+setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -106,7 +107,7 @@ setlocal syntax=vim
 endif
 setlocal tabstop=8
 setlocal tags=
-setlocal textwidth=78
+setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
 setlocal undolevels=-123456
@@ -115,12 +116,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 62 - ((61 * winheight(0) + 31) / 63)
+let s:l = 31 - ((21 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
-normal! 0
+31
+normal! 012|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

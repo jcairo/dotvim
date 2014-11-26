@@ -70,6 +70,7 @@ setlocal iskeyword=@,48-57,_,192-255,#
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+setlocal lispwords=
 setlocal list
 setlocal nomacmeta
 setlocal makeprg=
@@ -97,7 +98,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=
+setlocal statusline=%!py3eval('powerline.statusline(1)')
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -115,7 +116,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 11) / 23)
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt

@@ -1,31 +1,48 @@
-"Enable pathogen plugin
 filetype off
 execute pathogen#infect()
 execute pathogen#helptags()
 
-" Tagbar shortcut
-nmap <F8> :TagbarToggle<CR>
+" Auto reload files when changed
+set autoread
 
+set showcmd " show commands botom right
 set hlsearch " highlight search matches
 set incsearch "search as chars are entered
 " turn off highlighted search text
 nnoremap <leader><space> :nohlsearch<CR>
 
+" autocompletion
+"filetype plugin on
+"set omnifunc=syntaxcomplete#Complete
+
+" Ctrlp settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+
+" show buffers using ariline as tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline_theme = 'dark'
+"
+" set easy motion leader
+let g:EasyMotion_leader_key = '<Leader>'
+
 " set folding options
-set foldmethod=syntax
 set foldmethod=indent
 set foldnestmax=2
 set foldlevel=99
 filetype plugin indent on
 
+" Set case insensitive search
+:set ignorecase
+:set smartcase
+
 syntax on
 syntax enable
-
-"Pymode settings
-"let g:pymode_options = 0
-"let g:pymode_lint_cwindow = 0
-"let g:pymode_rope_completion = 0
-"let g:pymode_python = 'disable'
 
 set completeopt-=preview
 
@@ -98,23 +115,27 @@ set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 
 " Leave insert mode immediately no delay
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+" if ! has('gui_running')
+"     set ttimeoutlen=10
+"     augroup FastEscape
+"         autocmd!
+"         au InsertEnter * set timeoutlen=0
+"         au InsertLeave * set timeoutlen=1000
+"     augroup END
+" endif
 
 " Hide the standard display information
 set noshowmode
 
-" Source explorer stuff
-nmap <F10> :SrcExplToggle<CR>
-let g:SerExpl_pluginList = [
-    \ "__Tag_List__",
-    \ "_NERT_tree_",
-    \ "[BufExplorer]",
-    \ ]
+" Remap vim split switching to ctrl+j/k/l/h
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
+" Cycle through open buffers
+:nnoremap <C-l> :bnext<CR>
+:nnoremap <C-h> :bprevious<CR>
+" Open splits right and below
+set splitbelow
+set splitright

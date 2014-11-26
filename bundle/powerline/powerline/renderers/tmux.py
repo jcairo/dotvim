@@ -1,6 +1,5 @@
 # vim:fileencoding=utf-8:noet
-
-from __future__ import absolute_import, unicode_literals
+from __future__ import (unicode_literals, division, absolute_import, print_function)
 
 from powerline.renderer import Renderer
 from powerline.colorscheme import ATTR_BOLD, ATTR_ITALIC, ATTR_UNDERLINE
@@ -14,7 +13,7 @@ class TmuxRenderer(Renderer):
 
 	def hlstyle(self, fg=None, bg=None, attr=None):
 		'''Highlight a segment.'''
-		# We don't need to explicitly reset attributes, so skip those calls
+		# We don’t need to explicitly reset attributes, so skip those calls
 		if not attr and not bg and not fg:
 			return ''
 		tmux_attr = []

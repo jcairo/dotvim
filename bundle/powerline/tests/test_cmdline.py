@@ -2,15 +2,19 @@
 
 '''Tests for shell.py parser'''
 
+from __future__ import (unicode_literals, division, absolute_import, print_function)
 
-from powerline.shell import get_argparser, finish_args
-from tests import TestCase
-from tests.lib import replace_attr
 import sys
+
 if sys.version_info < (3,):
 	from io import BytesIO as StrIO
 else:
-	from io import StringIO as StrIO  # NOQA
+	from io import StringIO as StrIO
+
+from powerline.commands.main import get_argparser, finish_args
+
+from tests import TestCase
+from tests.lib import replace_attr
 
 
 class TestParser(TestCase):
@@ -42,7 +46,7 @@ class TestParser(TestCase):
 				(['shell', '--config_path'],             'expected one argument'),
 				(['shell', '--renderer_arg'],            'expected one argument'),
 				(['shell', '--jobnum'],                  'expected one argument'),
-				(['-r', 'zsh_prompt'],                   'too few arguments|the following arguments are required: ext'),
+				(['-r', '.zsh'],                         'too few arguments|the following arguments are required: ext'),
 				(['shell', '--last_exit_code', 'i'],     'invalid int value'),
 				(['shell', '--last_pipe_status', '1 i'], 'invalid <lambda> value'),
 			]:
@@ -57,12 +61,12 @@ class TestParser(TestCase):
 		err = StrIO()
 		with replace_attr(sys, 'stdout', out, 'stderr', err):
 			for argv, expargs in [
-				(['shell'],                     {'ext': ['shell']}),
-				(['shell', '-r', 'zsh_prompt'], {'ext': ['shell'], 'renderer_module': 'zsh_prompt'}),
+				(['shell'],               {'ext': ['shell']}),
+				(['shell', '-r', '.zsh'], {'ext': ['shell'], 'renderer_module': '.zsh'}),
 				([
 					'shell',
 					'left',
-					'-r', 'zsh_prompt',
+					'-r', '.zsh',
 					'--last_exit_code', '10',
 					'--last_pipe_status', '10 20 30',
 					'--jobnum=10',
@@ -71,11 +75,12 @@ class TestParser(TestCase):
 					'-c', 'common.spaces=4',
 					'-t', 'default.segment_data.hostname.before=H:',
 					'-p', '.',
+					'-p', '..',
 					'-R', 'smth={"abc":"def"}',
 				], {
 					'ext': ['shell'],
 					'side': 'left',
-					'renderer_module': 'zsh_prompt',
+					'renderer_module': '.zsh',
 					'last_exit_code': 10,
 					'last_pipe_status': [10, 20, 30],
 					'jobnum': 10,
@@ -90,10 +95,12 @@ class TestParser(TestCase):
 							}
 						}
 					},
-					'config_path': '.',
+					'config_path': ['.', '..'],
 					'renderer_arg': {'smth': {'abc': 'def'}},
 				}),
 				(['shell', '-R', 'arg=true'], {'ext': ['shell'], 'renderer_arg': {'arg': True}}),
+				(['shell', '-R', 'arg=true', '-R', 'arg='], {'ext': ['shell'], 'renderer_arg': {}}),
+				(['shell', '-R', 'arg='], {'ext': ['shell'], 'renderer_arg': {}}),
 				(['shell', '-t', 'default.segment_info={"hostname": {}}'], {
 					'ext': ['shell'],
 					'theme_option': {

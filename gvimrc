@@ -109,11 +109,12 @@ endif
 " Hide the standard display information
 set noshowmode
 
-" Source explorer stuff
-nmap <F10> :SrcExplToggle<CR>
-let g:SerExpl_pluginList = [
-    \ "__Tag_List__",
-    \ "_NERT_tree_",
-    \ "[BufExplorer]",
-    \ ]
+" Remap vim split switching to ctrl+j/k/l/h
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
+" Open splits right and below
+set splitbelow
+set splitright
