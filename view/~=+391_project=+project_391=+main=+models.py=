@@ -117,11 +117,11 @@ normal! zo
 normal! zo
 85
 normal! zo
-let s:l = 60 - ((32 * winheight(0) + 32) / 65)
+let s:l = 158 - ((34 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-60
+158
 normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost

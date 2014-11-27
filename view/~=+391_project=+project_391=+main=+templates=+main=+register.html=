@@ -86,7 +86,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!py3eval('powerline.statusline(1)')
+setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -105,12 +105,12 @@ setlocal wrap
 setlocal wrapmargin=0
 3
 normal! zo
-let s:l = 13 - ((12 * winheight(0) + 27) / 54)
+let s:l = 71 - ((51 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
-normal! 017|
+71
+normal! 038|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

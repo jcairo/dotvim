@@ -107,18 +107,20 @@ setlocal wrapmargin=0
 normal! zo
 75
 normal! zo
-180
+239
 normal! zo
-231
+391
 normal! zo
-264
+486
 normal! zo
-let s:l = 156 - ((32 * winheight(0) + 32) / 65)
+573
+normal! zo
+let s:l = 153 - ((59 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-156
-normal! 045|
+153
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
